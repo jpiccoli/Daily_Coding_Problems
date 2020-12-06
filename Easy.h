@@ -7,6 +7,7 @@
 #include <algorithm>
 
 std::pair<long, long> number_456();
-std::vector<int> number_489(std::vector<int> arr);
+//std::vector<int> number_489(std::vector<int> arr);
 bool number_491(int value);
+bool number_518(std::vector<int> nums, int sum);
 

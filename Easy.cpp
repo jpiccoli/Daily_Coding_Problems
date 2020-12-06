@@ -1,5 +1,7 @@
 #include "Easy.h"
 
+#include <algorithm>
+
 //std::vector<int> number_489(std::vector<int> arr)
 //{
 //}
@@ -14,6 +16,7 @@ struct action
   std::string type;
 };
 
+// Building occupancy problem
 std::pair<long, long> number_456()
 {
   std::pair<long, long> times;
@@ -81,6 +84,7 @@ std::pair<long, long> number_456()
   return times;
 }
 
+// Palindromic integer
 bool number_491(int value)
 {
   auto temp = value;
@@ -119,7 +123,36 @@ bool number_491(int value)
 }
 
 
+// Support function for #518
+bool pair_sums_to_k(std::vector<int> vec, int k, int start)
+{
+  int low = start;
+  int high = vec.size() - 1;
+  while(low < high)
+  {
+    if(vec[ low ] + vec[ high ] == k)
+      return true;
+    else if(vec[ low ] + vec[ high ] < k)
+      low++;
+    else
+      high--;
+  }
 
+  return false;
+}
+
+// Numbers that sum to a given number
+bool number_518(std::vector<int> nums, int sum)
+{
+  std::sort(nums.begin(), nums.end());
+  for(unsigned i = 0; i < nums.size() - 2; ++i)
+  {
+    if(pair_sums_to_k(nums, sum - nums[ i ], i + 1))
+      return true;
+  }
+
+  return false;
+}
 
 
 
