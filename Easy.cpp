@@ -122,6 +122,25 @@ bool number_491(int value)
   return true;
 }
 
+// Find the nth number that is a power of 7 or the sum f unique powers of 7
+int number_516(int n)
+{
+  int answer = 0;
+  int bit_place = 0;
+
+  while(n > 0)
+  {
+    if(n & 1)
+    {
+      answer += static_cast<int>(pow(7, bit_place));
+    }
+
+    n >>= 1;
+    bit_place++;
+  }
+
+  return answer;
+}
 
 // Support function for #518
 bool pair_sums_to_k(std::vector<int> vec, int k, int start)
@@ -154,7 +173,25 @@ bool number_518(std::vector<int> nums, int sum)
   return false;
 }
 
+// How many integer pairs satsify the condition a + b = M and a XOR b = N
+std::vector<std::pair<int, int>> number_523(int M, int N)
+{
+  int M_count = 0;
+  int N_count = 0;
+  int overall_count = 0;
 
+  std::vector<std::pair<int,int>> pairs;
+
+  for(int i = 0; i < M/2; ++i)
+  {
+    if((i ^ (M - i)) == N)
+    {
+      pairs.push_back(std::pair<int, int>(i, M - i));
+    }
+  }
+
+  return pairs;
+}
 
 
 
