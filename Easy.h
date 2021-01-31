@@ -12,3 +12,4 @@ bool number_491(int value);
 bool number_518(std::vector<int> nums, int sum);
 int number_516(int x);
 std::vector<std::pair<int,int>> number_523(int M, int N);
+bool number_578(std::string s1, std::string s2);

@@ -1,6 +1,8 @@
 #include "Easy.h"
 
 #include <algorithm>
+#include <map>
+#include <set>
 
 //std::vector<int> number_489(std::vector<int> arr)
 //{
@@ -193,7 +195,27 @@ std::vector<std::pair<int, int>> number_523(int M, int N)
   return pairs;
 }
 
+bool number_578(std::string s1, std::string s2)
+{
+  std::map<char, char> mapping;
 
+  if(s1.length() != s2.length())
+    return false;
+
+  for(unsigned i = 0; i < s1.length(); ++i)
+  {
+    if(mapping.find(s1[ i ]) == mapping.end())
+    {
+      mapping.insert({ s1[ i ], s2[ i ] });
+    }
+    else if(mapping[ s1[ i ] ] != s2[ i ])
+    {
+      return false;
+    }
+  }
+
+  return true;
+}
 
 
 
