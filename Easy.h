@@ -13,3 +13,4 @@ bool number_518(std::vector<int> nums, int sum);
 int number_516(int x);
 std::vector<std::pair<int,int>> number_523(int M, int N);
 bool number_578(std::string s1, std::string s2);
+int number_581(std::pair<int, int> top_left1, std::pair<int, int> dimensions1, std::pair<int, int> top_left2, std::pair<int, int> dimensions2);

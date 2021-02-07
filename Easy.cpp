@@ -217,7 +217,44 @@ bool number_578(std::string s1, std::string s2)
   return true;
 }
 
+int number_581(std::pair<int, int> top_left1, std::pair<int, int> dimensions1, std::pair<int, int> top_left2, std::pair<int, int> dimensions2)
+{
+  //int bottom_left_y1 = top_left1.second - dimensions1.second;
+  //int bottom_left_y2 = top_left2.second - dimensions2.second;
 
+  //int top_right_x1 = top_left1.first + dimensions1.first;
+  //int top_right_x2 = top_left2.first + dimensions2.first;
+
+  //if(bottom_left_y2 > top_left1.second || bottom_left_y1 > top_left2.second)
+  //  return 0;
+
+  //if(top_right_x2 > top_left1.first  || top_right_x2 > top_left1.first)
+  //  return 0;
+
+  //auto height = top_left1.second - bottom_left_y2;
+  //auto width = top_left1.first - top_right_x2;
+
+  //auto area = height * width;
+  //if(area < 0)
+  //  area *= -1;
+
+  // Right-most left border
+  auto left_x = std::max(top_left1.first, top_left2.first);
+
+  // Left-most right border
+  auto right_x = std::min(top_left1.first + dimensions1.first, top_left2.first+ dimensions2.first);
+
+  // Bottom-most top border
+  auto top_y = std::min(top_left1.second, top_left2.second);
+
+  // Top-most bottom border
+  auto bottom_y = std::max(top_left1.second - dimensions1.second, top_left2.second - dimensions2.second);
+
+  if(left_x > right_x || bottom_y > top_y)
+    return 0;
+
+  return (right_x - left_x) * (top_y - bottom_y);
+}
 
 
 
