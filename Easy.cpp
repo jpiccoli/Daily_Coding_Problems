@@ -256,7 +256,129 @@ int number_581(std::pair<int, int> top_left1, std::pair<int, int> dimensions1, s
   return (right_x - left_x) * (top_y - bottom_y);
 }
 
+// Support function for number_584()
+void get_max_char(std::map<char, int> character_count, char& character, int& index)
+{
+  int current_max = 0;
 
+  for(auto it = character_count.begin(); it != character_count.end(); ++it)
+  {
+    if(it->second > current_max)
+    {
+      current_max = it->second;
+      character = it->first;
+      index = it->second;
+    }
+  }
+}
+
+// Support structure for number_584()
+struct character_info
+{
+  char character;
+  int count;
+  bool active;
+};
+
+// Support function for number_584()
+bool is_active_element(std::vector<character_info> vec)
+{
+  auto result = std::find_if(vec.begin(), vec.end(), [] (character_info element) {
+    return element.active;
+  });
+
+  return result != vec.end();
+}
+
+// Support function for number_584()
+void get_max_char_element(std::vector<character_info> vec, char& character, int& count, int& index)
+{
+  int current_max = 0;
+
+  for(unsigned i = 0; i < vec.size(); ++i)
+  {
+    if(vec[i].count > current_max && vec[i].active)
+    {
+      current_max = vec[ i ].count;
+      character = vec[ i ].character;
+      count = vec[ i ].count;
+      index = i;
+    }
+  }
+}
+
+// The complexity here is due to the fact that a C++ vector, map, etc. cannot EASILY be
+// modified while iterating. This is in contrast to a Python dictionary, which can have
+// deletion operations in an iteration.
+std::string number_584(std::string test_string)
+{
+  std::vector<character_info> elements;
+  char found_char;
+  int found_count;
+  int index;
+  std::string result;
+
+  std::map<char, int> character_count;
+
+  for(unsigned i = 0; i < test_string.size(); ++i)
+  {
+    auto itr = character_count.find(test_string[ i ]);
+    if(itr == character_count.end())
+    {
+      character_count[ test_string[ i ] ] = 1;
+    }
+    else
+    {
+      auto val = itr->second;
+      character_count[ test_string[ i ] ] = ++val;
+    }
+  }
+
+  for(auto it = character_count.begin(); it != character_count.end(); ++it)
+  {
+    character_info element;
+    element.character = it->first;
+    element.count = it->second;
+    element.active = true;
+    elements.push_back(element);
+  }
+
+  get_max_char_element(elements, found_char, found_count, index);
+  elements[ index ].active = false;
+  result.push_back(found_char);
+
+  while(is_active_element(elements))
+  {
+    char last_char = found_char;
+    int last_count = found_count;
+
+    get_max_char_element(elements, found_char, found_count, index);
+    elements[ index ].active = false;
+    result.push_back(found_char);
+
+    if(last_count > 1)
+    {
+      for(unsigned i = 0; i < elements.size(); ++i)
+      {
+        if(elements[ i ].character == last_char)
+        {
+          elements[ i ].count = last_count - 1;
+          elements[ i ].active = true;
+          break;
+        }
+      }
+    }
+  }
+
+  if(result.size() == test_string.size())
+  {
+    return result;
+  }
+  else
+  {
+    return "None";
+  }
+}
 
 
 
