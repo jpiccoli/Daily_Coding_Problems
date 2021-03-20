@@ -24,12 +24,18 @@
     <ClInclude Include="Easy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Medium.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Daily_Coding_Problems.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Easy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Medium.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
