@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <map>
 #include <set>
+#include <exception>
 
 //std::vector<int> number_489(std::vector<int> arr)
 //{
@@ -380,7 +381,54 @@ std::string number_584(std::string test_string)
   }
 }
 
+template<typename T>
+struct SparseArray
+{
+  std::map<int, T> sparse_array;
+  int size;
 
+  void init(std::vector<T> arr, int size_)
+  {
+    size = size_;
+
+    for(int i = 0; i < size; i++)
+    {
+      if(arr[ i ] != 0)
+      {
+        sparse_array[ i ] = arr[ i ];
+      }
+    }
+  }
+
+  void set(int index, int val)
+  {
+    if(index >= size || index < 0)
+    {
+      throw std::exception();
+    }
+    sparse_array[ index ] = val;
+  }
+
+  T get(int index)
+  {
+    if(index >= size || index < 0)
+    {
+      throw std::exception();
+    }
+    return sparse_array[ index ];
+  }
+};
+
+int number_588(std::vector<int> vec, int& result)
+{
+  SparseArray<int> sa;
+
+  std::vector<int> initial{ 1,0,2,0,3,0,4,0,5,0,6,0,7,0,8,0,9,0,11,0,12,0,13,0,14,0,15,0 };
+  sa.init(initial, (int)initial.size());
+  sa.set(0, 29);
+  result = sa.get(0);
+  return sa.sparse_array.size();
+}
 
 
 
