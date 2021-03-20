@@ -381,6 +381,7 @@ std::string number_584(std::string test_string)
   }
 }
 
+// Support structure for number_588()
 template<typename T>
 struct SparseArray
 {
@@ -430,6 +431,24 @@ int number_588(std::vector<int> vec, int& result)
   return sa.sparse_array.size();
 }
 
+int number_626(std::vector<int> numbers)
+{
+  if(numbers.size() == 3)
+    return numbers[ 0 ] * numbers[ 1 ] * numbers[ 2 ];
+
+  // Answer is one of the following either the product of the larger of three largest 
+  // numbers or two smallest (most negative) numbers and the largest number
+  std::sort(numbers.begin(), numbers.end());
+
+  int third_largest = numbers[ numbers.size() - 3 ];
+  int second_largest = numbers[ numbers.size() - 2 ];
+  int first_largest = numbers[ numbers.size() - 1 ];
+
+  int first_smallest = numbers[ 0 ];
+  int second_smallest = numbers[ 1 ];
+
+  return std::max(first_largest * second_largest * third_largest, first_largest * first_smallest * second_smallest);
+}
 
 
 
