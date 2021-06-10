@@ -450,7 +450,25 @@ int number_626(std::vector<int> numbers)
   return std::max(first_largest * second_largest * third_largest, first_largest * first_smallest * second_smallest);
 }
 
+boost::optional<unsigned int> number_708(std::vector<int> numbers)
+{
+  int low = 0;
+  int high = numbers.size();
+  int mid = 1;
 
+  while(low <= high)
+  {
+    mid = (low + high) / 2;
+    if(numbers[ mid ] == mid)
+      return mid;
+    else if(numbers[ mid ] < mid)
+      low = mid + 1;
+    else
+      high = mid - 1;
+  }
+
+  return boost::none;
+}
 
 
 
