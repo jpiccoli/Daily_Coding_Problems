@@ -489,7 +489,70 @@ std::string number_718_1(int value)
   return answer;
 }
 
+std::pair<int, int> number_723(std::pair<int, int> p1, std::pair<int, int> p2, std::pair<int, int> p3, std::pair<int, int> p4)
+{
+  std::pair<int, int> result;
 
+  std::vector<std::pair<int, int>> points;
+
+  points.push_back(p1);
+  points.push_back(p2);
+  points.push_back(p3);
+  points.push_back(p4);
+
+  std::vector<int> ranges;
+  ranges.push_back(p1.second - p1.first);
+  ranges.push_back(p2.second - p2.first);
+  ranges.push_back(p3.second - p3.first);
+  ranges.push_back(p4.second - p4.first);
+
+  int range_index = -1;
+  for(unsigned i = 0; i < ranges.size(); ++i)
+  {
+    if(range_index == -1)
+    {
+      range_index = ranges[i];
+    }
+    else if(ranges[ i ] < range_index)
+    {
+      range_index = i;
+    }
+  }
+
+  // Check lowest point in the smallest range
+  int small_range_start = points[ range_index ].first;
+
+  std::vector<bool> small_range_status{ false, false, false, false };
+
+  for(unsigned i = 0; i < points.size(); ++i)
+  {
+    if(points[ i ].first <= small_range_start && small_range_start <= points[ i ].second)
+      small_range_status[i] = true;
+  }
+
+  int small_range_end = -1;
+  bool small_range_end_set = false;
+  for(unsigned i = 0; i < small_range_status.size(); ++i)
+  {
+    if(small_range_status[ i ] == false)
+    {
+      if(!small_range_end_set)
+      {
+        small_range_end = points[ i ].first;
+        small_range_end_set = true;
+      }
+      else if(points[ i ].first < small_range_end )
+      {
+        small_range_end = points[ i ].first;
+      }
+    }
+  }
+  
+  result.first = small_range_start;
+  result.second = small_range_end;
+
+  return result;
+}
 
 
 
