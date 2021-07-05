@@ -20,3 +20,5 @@ int number_626(std::vector<int> numbers);
  boost::optional<unsigned int> number_708(std::vector<int> numbers);
  std::string number_718_1(int value);
  std::pair<int, int> number_723(std::pair<int, int> p1, std::pair<int, int> p2, std::pair<int, int> p3, std::pair<int, int> p4);
+ std::vector<int> number_725(std::vector<int> position1, std::vector<int> position2);
+ std::vector<double> number_727(std::vector<int> input);

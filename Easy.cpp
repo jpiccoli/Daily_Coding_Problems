@@ -554,10 +554,49 @@ std::pair<int, int> number_723(std::pair<int, int> p1, std::pair<int, int> p2, s
   return result;
 }
 
+std::vector<int> number_725(std::vector<int> position1, std::vector<int> position2)
+{
+  int total = 0;
 
+  std::sort(position1.begin(), position1.end());
+  std::sort(position2.begin(), position2.end());
 
+  std::vector<int> moves{ 0,0,0,0 };
 
+  for(unsigned int i = 0; i < position1.size(); ++i)
+  {
+    moves[i] = (std::max(moves[i], std::abs(position1[i] - position2[i])));
+  }
 
+  return moves;
+}
+
+// Daily Coding Problem uses min-heap and max-heap
+std::vector<double> number_727(std::vector<int> input)
+{
+  std::vector<double> medians;
+  std::vector<int> temp;
+
+  for(unsigned i = 0; i < input.size(); ++i)
+  {
+    temp.push_back(input[ i ]);
+    std::sort(temp.begin(), temp.end());
+    if(temp.size() % 2 == 1)
+    {
+      // Odd
+      int index = (temp.size() / 2);
+      medians.push_back(temp[ index ]);
+    }
+    else
+    {
+      //Even
+      auto val = (temp[ temp.size() / 2 ] + temp[ (temp.size() / 2) - 1 ]) / 2.0;
+      medians.push_back(val);
+    }
+  }
+
+  return medians;
+}
 
 
 
