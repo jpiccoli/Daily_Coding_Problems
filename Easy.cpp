@@ -470,6 +470,24 @@ boost::optional<unsigned int> number_708(std::vector<int> numbers)
   return boost::none;
 }
 
+std::string number_718_1(int value)
+{
+  std::string answer = "";
+
+  int n = value;
+  int remainder = 0;
+
+  while(n > 0)
+  {
+    int x = n;
+    n = (n - 1) / 26;
+    remainder = (x - 1) % 26;
+    char ch = remainder + 65;
+    answer = ch + answer;
+  }
+
+  return answer;
+}
 
 
 

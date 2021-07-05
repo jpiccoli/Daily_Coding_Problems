@@ -18,3 +18,4 @@ std::string number_584(std::string test_string);
 int number_588(std::vector<int> initial, int& result);
 int number_626(std::vector<int> numbers);
  boost::optional<unsigned int> number_708(std::vector<int> numbers);
+ std::string number_718_1(int value);
